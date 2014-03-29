@@ -8,8 +8,8 @@
 		<section name="Domaプロジェクト">
 			<p>
 				<strong>Doma</strong>プロジェクトは，
-				<a href="http://java.sun.com/javase/6/docs/technotes/guides/apt/index.html">
-					Annotation Processing Tool （apt）
+				<a href="https://www.jcp.org/en/jsr/detail?id=269">
+					Pluggable Annotation Processing API
 				</a>
 				を利用したJava6（JDBC4.0）対応のO/Rマッパーとその<a href="extension/index.html">開発支援ツール</a>を提供します。
 			</p>
@@ -22,6 +22,19 @@
 			<p>
 				Domaに関する最新のjarファイルやソースコードが必要な場合は、<a href="downloads.html">ダウンロード</a>のページを参照してください。
 			</p>
+			<div class="caution">
+				<div>Doma のバージョンについて</div>
+				<p>
+					Doma のメジャーバージョンには 1 と 2 がありますが、本サイトは、 <b>バージョン 1</b> を対象にしています。
+				</p>
+				<p>
+					バージョン 1 は、Java 6 でコンパイルされ、 Java 6、 Java 7、 Java 8 上で動作します。
+				</p>
+				<p>
+					バージョン 2 は、Java 8 でコンパイルされ、 Java 8 上で動作します。
+					バージョン 2 については <a href="http://doma.readthedocs.org/">doma.readthedocs.org</a> を参照ください。
+				</p>
+			</div>
 		</section>
 		<section name="コンセプト">
 			<p>
