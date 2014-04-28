@@ -24,12 +24,13 @@ import org.seasar.doma.jdbc.Config;
 import org.seasar.doma.jdbc.ExceptionSqlLogType;
 import org.seasar.doma.jdbc.JdbcLogger;
 import org.seasar.doma.jdbc.RequiresNewController;
+import org.seasar.doma.jdbc.ResultSetFactory;
 import org.seasar.doma.jdbc.SqlFileRepository;
 import org.seasar.doma.jdbc.dialect.Dialect;
 
 /**
  * @author taedium
- * 
+ *
  */
 public class RuntimeConfig implements Config {
 
@@ -81,6 +82,11 @@ public class RuntimeConfig implements Config {
     @Override
     public ClassHelper getClassHelper() {
         return config.getClassHelper();
+    }
+
+    @Override
+    public ResultSetFactory getResultSetFactory() {
+        return config.getResultSetFactory();
     }
 
     @Override

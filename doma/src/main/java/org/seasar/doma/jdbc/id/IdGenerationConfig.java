@@ -22,14 +22,15 @@ import javax.sql.DataSource;
 import org.seasar.doma.jdbc.Config;
 import org.seasar.doma.jdbc.JdbcLogger;
 import org.seasar.doma.jdbc.RequiresNewController;
+import org.seasar.doma.jdbc.ResultSetFactory;
 import org.seasar.doma.jdbc.dialect.Dialect;
 import org.seasar.doma.jdbc.entity.EntityType;
 
 /**
  * 識別子の生成に関する設定です。
- * 
+ *
  * @author taedium
- * 
+ *
  */
 public class IdGenerationConfig {
 
@@ -47,7 +48,7 @@ public class IdGenerationConfig {
 
     /**
      * インスタンスを構築します。
-     * 
+     *
      * @param config
      *            JDBCの設定
      * @param entityType
@@ -60,7 +61,7 @@ public class IdGenerationConfig {
 
     /**
      * インスタンスを構築します。
-     * 
+     *
      * @param config
      *            JDBCの設定
      * @param entityType
@@ -97,6 +98,10 @@ public class IdGenerationConfig {
 
     public RequiresNewController getRequiresNewController() {
         return config.getRequiresNewController();
+    }
+
+    public ResultSetFactory getResultSetFactory() {
+        return config.getResultSetFactory();
     }
 
     public int getFetchSize() {

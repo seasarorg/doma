@@ -35,12 +35,12 @@ import org.seasar.doma.wrapper.StringWrapper;
 
 /**
  * {@link TableIdGenerator} のデフォルトの実装です。
- * 
+ *
  * @author taedium
- * 
+ *
  */
 public class BuiltinTableIdGenerator extends AbstractPreGenerateIdGenerator
-        implements TableIdGenerator {
+implements TableIdGenerator {
 
     /** テーブルの完全修飾名 */
     protected String qualifiedTableName;
@@ -109,7 +109,7 @@ public class BuiltinTableIdGenerator extends AbstractPreGenerateIdGenerator
 
     /**
      * 識別子を更新するバインド変数つきSQLを返します。
-     * 
+     *
      * @return 識別子を更新するバインド変数つきSQL
      */
     protected String createUpdateRawSql() {
@@ -128,7 +128,7 @@ public class BuiltinTableIdGenerator extends AbstractPreGenerateIdGenerator
 
     /**
      * 識別子を更新するログ用SQLを返します。
-     * 
+     *
      * @return 識別子を更新するログ用SQL
      */
     protected String createUpdateFormattedSql() {
@@ -151,7 +151,7 @@ public class BuiltinTableIdGenerator extends AbstractPreGenerateIdGenerator
 
     /**
      * 識別子を取得するバインド変数つきSQLを返します。
-     * 
+     *
      * @return 識別子を取得するバインド変数つきSQL
      */
     protected String createSelectRawSql() {
@@ -168,7 +168,7 @@ public class BuiltinTableIdGenerator extends AbstractPreGenerateIdGenerator
 
     /**
      * 識別子を取得するログ用SQLを返します。
-     * 
+     *
      * @return 識別子を取得するログ用SQL
      */
     protected String createSelectFormattedSql() {
@@ -207,7 +207,7 @@ public class BuiltinTableIdGenerator extends AbstractPreGenerateIdGenerator
 
     /**
      * 識別子を更新します。
-     * 
+     *
      * @param config
      *            識別子生成の設定
      * @param sql
@@ -244,7 +244,7 @@ public class BuiltinTableIdGenerator extends AbstractPreGenerateIdGenerator
 
     /**
      * 識別子を取得します。
-     * 
+     *
      * @param config
      *            識別子生成の設定
      * @param sql
@@ -263,7 +263,8 @@ public class BuiltinTableIdGenerator extends AbstractPreGenerateIdGenerator
                 logger.logSql(getClass().getName(), "selectId", sql);
                 setupOptions(config, preparedStatement);
                 preparedStatement.setString(1, pkColumnValue);
-                ResultSet resultSet = preparedStatement.executeQuery();
+                ResultSet resultSet = config.getResultSetFactory()
+                        .createResultSet(preparedStatement, sql);
                 if (resultSet.next()) {
                     Object result = resultSet.getObject(1);
                     if (result instanceof Number) {
