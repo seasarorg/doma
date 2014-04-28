@@ -20,9 +20,11 @@ import javax.sql.DataSource;
 import org.seasar.doma.jdbc.ClassHelper;
 import org.seasar.doma.jdbc.Config;
 import org.seasar.doma.jdbc.DefaultClassHelper;
+import org.seasar.doma.jdbc.DefaultMaxRowsLimitHandler;
 import org.seasar.doma.jdbc.ExceptionSqlLogType;
 import org.seasar.doma.jdbc.GreedyCacheSqlFileRepository;
 import org.seasar.doma.jdbc.JdbcLogger;
+import org.seasar.doma.jdbc.MaxRowsLimitHandler;
 import org.seasar.doma.jdbc.NullRequiresNewController;
 import org.seasar.doma.jdbc.RequiresNewController;
 import org.seasar.doma.jdbc.SqlFileRepository;
@@ -32,7 +34,7 @@ import org.seasar.doma.jdbc.dialect.StandardDialect;
 
 /**
  * @author taedium
- * 
+ *
  */
 public class MockConfig implements Config {
 
@@ -47,6 +49,8 @@ public class MockConfig implements Config {
     protected RequiresNewController requiresNewController = new NullRequiresNewController();
 
     protected ClassHelper classHelper = new DefaultClassHelper();
+
+    protected MaxRowsLimitHandler maxRowsLimitHandler = new DefaultMaxRowsLimitHandler();
 
     protected ExceptionSqlLogType exceptionSqlLogType = ExceptionSqlLogType.FORMATTED_SQL;
 
@@ -83,6 +87,11 @@ public class MockConfig implements Config {
     @Override
     public ClassHelper getClassHelper() {
         return classHelper;
+    }
+
+    @Override
+    public MaxRowsLimitHandler getMaxRowsLimitHandler() {
+        return maxRowsLimitHandler;
     }
 
     @Override
