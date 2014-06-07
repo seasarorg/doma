@@ -28,7 +28,7 @@ import org.seasar.doma.jdbc.entity.VersionPropertyType;
 
 /**
  * @author taedium
- * 
+ *
  */
 public class SqlFileUpdateQuery extends SqlFileModifyQuery implements
         UpdateQuery {
@@ -143,7 +143,7 @@ public class SqlFileUpdateQuery extends SqlFileModifyQuery implements
             if (context.getNewEntity() != null) {
                 entity = context.getNewEntity();
             }
-
+            entityType.saveCurrentStates(entity);
         }
 
         protected void prepareOptimisticLock() {

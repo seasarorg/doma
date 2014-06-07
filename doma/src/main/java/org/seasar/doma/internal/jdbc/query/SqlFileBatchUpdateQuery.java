@@ -28,10 +28,10 @@ import org.seasar.doma.jdbc.entity.VersionPropertyType;
 
 /**
  * @author taedium
- * 
+ *
  */
 public class SqlFileBatchUpdateQuery<E> extends SqlFileBatchModifyQuery<E>
-        implements BatchUpdateQuery {
+implements BatchUpdateQuery {
 
     protected EntityHandler entityHandler;
 
@@ -144,6 +144,7 @@ public class SqlFileBatchUpdateQuery<E> extends SqlFileBatchModifyQuery<E>
             if (context.getNewEntity() != null) {
                 currentEntity = context.getNewEntity();
             }
+            entityType.saveCurrentStates(currentEntity);
         }
 
         protected void prepareOptimisticLock() {
@@ -172,7 +173,7 @@ public class SqlFileBatchUpdateQuery<E> extends SqlFileBatchModifyQuery<E>
     }
 
     protected static class SqlFileBatchPreUpdateContext<E> extends
-            AbstractPreUpdateContext<E> {
+    AbstractPreUpdateContext<E> {
 
         public SqlFileBatchPreUpdateContext(EntityType<E> entityType,
                 Method method, Config config) {
@@ -192,7 +193,7 @@ public class SqlFileBatchUpdateQuery<E> extends SqlFileBatchModifyQuery<E>
     }
 
     protected static class SqlFileBatchPostUpdateContext<E> extends
-            AbstractPostUpdateContext<E> {
+    AbstractPostUpdateContext<E> {
 
         public SqlFileBatchPostUpdateContext(EntityType<E> entityType,
                 Method method, Config config) {

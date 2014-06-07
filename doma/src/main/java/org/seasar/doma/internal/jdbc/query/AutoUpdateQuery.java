@@ -34,10 +34,10 @@ import org.seasar.doma.wrapper.Wrapper;
 
 /**
  * @author taedium
- * 
+ *
  */
 public class AutoUpdateQuery<E> extends AutoModifyQuery<E> implements
-        UpdateQuery {
+UpdateQuery {
 
     protected boolean nullExcluded;
 
@@ -205,6 +205,7 @@ public class AutoUpdateQuery<E> extends AutoModifyQuery<E> implements
         if (context.getNewEntity() != null) {
             entity = context.getNewEntity();
         }
+        entityType.saveCurrentStates(entity);
     }
 
     public void setNullExcluded(boolean nullExcluded) {
@@ -229,7 +230,7 @@ public class AutoUpdateQuery<E> extends AutoModifyQuery<E> implements
     }
 
     protected static class AutoPreUpdateContext<E> extends
-            AbstractPreUpdateContext<E> {
+    AbstractPreUpdateContext<E> {
 
         protected final Set<String> changedPropertyNames;
 
@@ -258,7 +259,7 @@ public class AutoUpdateQuery<E> extends AutoModifyQuery<E> implements
     }
 
     protected static class AutoPostUpdateContext<E> extends
-            AbstractPostUpdateContext<E> {
+    AbstractPostUpdateContext<E> {
 
         protected final Set<String> changedPropertyNames;
 

@@ -31,10 +31,10 @@ import org.seasar.doma.jdbc.entity.EntityType;
 
 /**
  * @author taedium
- * 
+ *
  */
 public class AutoBatchUpdateQuery<E> extends AutoBatchModifyQuery<E> implements
-        BatchUpdateQuery {
+BatchUpdateQuery {
 
     protected boolean versionIgnored;
 
@@ -79,6 +79,7 @@ public class AutoBatchUpdateQuery<E> extends AutoBatchModifyQuery<E> implements
         if (context.getNewEntity() != null) {
             currentEntity = context.getNewEntity();
         }
+        entityType.saveCurrentStates(currentEntity);
     }
 
     protected void prepareOptimisticLock() {
@@ -199,7 +200,7 @@ public class AutoBatchUpdateQuery<E> extends AutoBatchModifyQuery<E> implements
     }
 
     protected static class AutoBatchPreUpdateContext<E> extends
-            AbstractPreUpdateContext<E> {
+    AbstractPreUpdateContext<E> {
 
         public AutoBatchPreUpdateContext(EntityType<E> entityType,
                 Method method, Config config) {
@@ -219,7 +220,7 @@ public class AutoBatchUpdateQuery<E> extends AutoBatchModifyQuery<E> implements
     }
 
     protected static class AutoBatchPostUpdateContext<E> extends
-            AbstractPostUpdateContext<E> {
+    AbstractPostUpdateContext<E> {
 
         public AutoBatchPostUpdateContext(EntityType<E> entityType,
                 Method method, Config config) {
