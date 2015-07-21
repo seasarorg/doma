@@ -18,6 +18,8 @@ package org.seasar.doma.internal.jdbc.query;
 import java.math.BigDecimal;
 import java.util.List;
 
+import example.entity.IdOnly;
+import example.entity._IdOnly;
 import junit.framework.TestCase;
 
 import org.seasar.doma.internal.jdbc.mock.MockConfig;
@@ -26,6 +28,7 @@ import org.seasar.doma.internal.jdbc.sql.PreparedSqlParameter;
 
 import example.entity.Emp;
 import example.entity._Emp;
+import org.seasar.doma.jdbc.dialect.MysqlDialect;
 
 /**
  * @author taedium
@@ -154,5 +157,27 @@ public class AutoInsertQueryTest extends TestCase {
         assertEquals(new Integer(10), parameters.get(0).getWrapper().get());
         assertEquals(new BigDecimal(200), parameters.get(1).getWrapper().get());
         assertEquals(new Integer(1), parameters.get(2).getWrapper().get());
+    }
+
+    public void testPrepareSql_idOnly() throws Exception {
+        // Use dialect which supports Identity strategy.
+        runtimeConfig.dialect = new MysqlDialect();
+
+        IdOnly idOnly = new IdOnly();
+
+        AutoInsertQuery<IdOnly> query = new AutoInsertQuery<IdOnly>(
+            _IdOnly.getSingletonInternal());
+        query.setMethod(getClass().getDeclaredMethod(getName()));
+        query.setConfig(runtimeConfig);
+        query.setEntity(idOnly);
+        query.setCallerClassName("aaa");
+        query.setCallerMethodName("bbb");
+        query.prepare();
+
+        PreparedSql sql = query.getSql();
+        assertEquals("insert into ID_ONLY () values ()",
+            sql.getRawSql());
+        List<PreparedSqlParameter> parameters = sql.getParameters();
+        assertEquals(0, parameters.size());
     }
 }
