@@ -159,13 +159,17 @@ public class AutoInsertQuery<E> extends AutoModifyQuery<E> implements
             builder.appendSql(p.getColumnName());
             builder.appendSql(", ");
         }
-        builder.cutBackSql(2);
+        if (!targetPropertyTypes.isEmpty()) {
+            builder.cutBackSql(2);
+        }
         builder.appendSql(") values (");
         for (EntityPropertyType<E, ?> p : targetPropertyTypes) {
             builder.appendWrapper(p.getWrapper(entity));
             builder.appendSql(", ");
         }
-        builder.cutBackSql(2);
+        if (!targetPropertyTypes.isEmpty()) {
+            builder.cutBackSql(2);
+        }
         builder.appendSql(")");
         sql = builder.build();
     }
