@@ -30,17 +30,31 @@ import org.seasar.doma.internal.jdbc.mock.MockResultSetMetaData;
 import org.seasar.doma.internal.jdbc.mock.RowData;
 import org.seasar.doma.internal.jdbc.query.SqlFileSelectQuery;
 import org.seasar.doma.internal.jdbc.util.SqlFileUtil;
+import org.seasar.doma.jdbc.MaxRowsLimitHandler;
+import org.seasar.doma.jdbc.Sql;
+import org.seasar.doma.jdbc.SqlParameter;
 
 import example.entity.Emp;
 import example.entity._Emp;
 
 /**
  * @author taedium
- * 
+ *
  */
 public class SelectCommandTest extends TestCase {
 
-    private final MockConfig runtimeConfig = new MockConfig();
+    private final MockConfig runtimeConfig = new MockConfig() {
+        @Override
+        public MaxRowsLimitHandler getMaxRowsLimitHandler() {
+            return new MaxRowsLimitHandler() {
+
+                @Override
+                public void handle(int maxRows, Sql<? extends SqlParameter> sql) {
+                    throw new MaxRowsLimitException(maxRows, sql);
+                }
+            };
+        };
+    };
 
     public void testExecute_singleResult() throws Exception {
         MockResultSetMetaData metaData = new MockResultSetMetaData();
@@ -133,5 +147,52 @@ public class SelectCommandTest extends TestCase {
         bindValue = bindValues.get(0);
         assertEquals(new BigDecimal(5000), bindValue.getValue());
         assertEquals(1, bindValue.getIndex());
+    }
+
+    public void testExecute_resultList_maxRowsLimit() throws Exception {
+        MockResultSetMetaData metaData = new MockResultSetMetaData();
+        metaData.columns.add(new ColumnMetaData("id"));
+        metaData.columns.add(new ColumnMetaData("name"));
+        metaData.columns.add(new ColumnMetaData("salary"));
+        metaData.columns.add(new ColumnMetaData("version"));
+        MockResultSet resultSet = new MockResultSet(metaData);
+        resultSet.rows.add(new RowData(1, "hoge", new BigDecimal(10000), 100));
+        resultSet.rows.add(new RowData(2, "foo", new BigDecimal(20000), 200));
+        resultSet.rows.add(new RowData(3, "bar", new BigDecimal(30000), 300));
+        resultSet.rows.add(new RowData(4, "baz", new BigDecimal(40000), 400));
+        runtimeConfig.dataSource.connection = new MockConnection(
+                new MockPreparedStatement(resultSet));
+
+        SqlFileSelectQuery query = new SqlFileSelectQuery();
+        query.setConfig(runtimeConfig);
+        query.setSqlFilePath(SqlFileUtil.buildPath(getClass().getName(),
+                getName()));
+        query.addParameter("salary", BigDecimal.class, new BigDecimal(5000));
+        query.setCallerClassName("aaa");
+        query.setCallerMethodName("bbb");
+        query.setMaxRows(4);
+        query.prepare();
+
+        SelectCommand<List<Emp>> command = new SelectCommand<List<Emp>>(query,
+                new EntityResultListHandler<Emp>(_Emp.getSingletonInternal()));
+        try {
+            command.execute();
+            fail();
+        } catch (MaxRowsLimitException e) {
+            assertEquals(4, e.maxRows);
+            assertNotNull(e.sql);
+        }
+    }
+
+    @SuppressWarnings("serial")
+    protected static class MaxRowsLimitException extends RuntimeException {
+        int maxRows;
+        Sql<? extends SqlParameter> sql;
+
+        protected MaxRowsLimitException(int maxRows,
+                Sql<? extends SqlParameter> sql) {
+            this.maxRows = maxRows;
+            this.sql = sql;
+        }
     }
 }

@@ -31,7 +31,7 @@ import org.seasar.doma.jdbc.dialect.Dialect;
 
 /**
  * @author taedium
- * 
+ *
  */
 public class SelectCommand<R> implements Command<R, SelectQuery> {
 
@@ -103,7 +103,10 @@ public class SelectCommand<R> implements Command<R, SelectQuery> {
             throws SQLException {
         ResultSet resultSet = preparedStatement.executeQuery();
         try {
-            return resultSetHandler.handle(resultSet, query);
+            ResultSet wrapper = new MaxRowLimitResultSet(resultSet, query
+                    .getConfig().getMaxRowsLimitHandler(), query.getMaxRows(),
+                    sql);
+            return resultSetHandler.handle(wrapper, query);
         } finally {
             JdbcUtil.close(resultSet, query.getConfig().getJdbcLogger());
         }

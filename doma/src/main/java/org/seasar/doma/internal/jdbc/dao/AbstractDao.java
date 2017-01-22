@@ -33,9 +33,9 @@ import org.seasar.doma.jdbc.DaoMethodNotFoundException;
 /**
  * {@link Dao} が注釈されたインタフェースの実装クラスのための骨格実装です。
  * <p>
- * 
+ *
  * @author taedium
- * 
+ *
  */
 public abstract class AbstractDao {
 
@@ -46,7 +46,7 @@ public abstract class AbstractDao {
 
     /**
      * 実行時用の設定を作成します。
-     * 
+     *
      * @param config
      *            JDBCの設定
      * @throws DomaNullPointerException
@@ -64,7 +64,7 @@ public abstract class AbstractDao {
 
     /**
      * 実行時用の設定を作成します。
-     * 
+     *
      * @param config
      *            JDBCの設定
      * @throws DomaNullPointerException
@@ -93,7 +93,7 @@ public abstract class AbstractDao {
 
     /**
      * 実行時用の設定を作成します。
-     * 
+     *
      * @param config
      *            JDBCの設定
      * @param dataSource
@@ -132,6 +132,10 @@ public abstract class AbstractDao {
             throw new ConfigException(config.getClass().getName(),
                     "getJdbcLogger");
         }
+        if (config.getMaxRowsLimitHandler() == null) {
+            throw new ConfigException(config.getClass().getName(),
+                    "getMaxRowsLimitHandler");
+        }
         if (config.getExceptionSqlLogType() == null) {
             throw new ConfigException(config.getClass().getName(),
                     "getExceptionSqlLogType");
@@ -140,7 +144,7 @@ public abstract class AbstractDao {
 
     /**
      * データソースを返します。
-     * 
+     *
      * @return データソース
      */
     protected DataSource getDataSource() {
@@ -149,7 +153,7 @@ public abstract class AbstractDao {
 
     /**
      * このDaoの {@literal public} なメソッドの実行開始を記録します。
-     * 
+     *
      * @param callerClassName
      *            クラス名前
      * @param callerMethodName
@@ -165,7 +169,7 @@ public abstract class AbstractDao {
 
     /**
      * このDaoなメソッドの実行終了を記録します。
-     * 
+     *
      * @param callerClassName
      *            クラス名
      * @param callerMethodName
@@ -181,7 +185,7 @@ public abstract class AbstractDao {
 
     /**
      * このDaoなメソッドの 実行時例外による 実行終了を記録します。
-     * 
+     *
      * @param callerClassName
      *            クラス名
      * @param callerMethodName

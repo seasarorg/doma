@@ -25,9 +25,9 @@ import java.util.Arrays;
 import org.seasar.doma.internal.util.AssertionUtil;
 
 /**
- * 
+ *
  * @author taedium
- * 
+ *
  */
 public class MockStatement extends MockWrapper implements Statement {
 
@@ -264,8 +264,6 @@ public class MockStatement extends MockWrapper implements Statement {
 
     @Override
     public void setMaxRows(int max) throws SQLException {
-        AssertionUtil.notYetImplemented();
-
     }
 
     @Override
