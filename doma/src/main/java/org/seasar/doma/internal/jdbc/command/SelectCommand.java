@@ -31,7 +31,7 @@ import org.seasar.doma.jdbc.dialect.Dialect;
 
 /**
  * @author taedium
- * 
+ *
  */
 public class SelectCommand<R> implements Command<R, SelectQuery> {
 
@@ -101,7 +101,8 @@ public class SelectCommand<R> implements Command<R, SelectQuery> {
 
     protected R executeQuery(PreparedStatement preparedStatement)
             throws SQLException {
-        ResultSet resultSet = preparedStatement.executeQuery();
+        ResultSet resultSet = query.getConfig().getResultSetFactory()
+                .createResultSet(preparedStatement, sql);
         try {
             return resultSetHandler.handle(resultSet, query);
         } finally {

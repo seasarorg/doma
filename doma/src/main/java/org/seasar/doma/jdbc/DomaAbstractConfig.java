@@ -15,43 +15,52 @@
  */
 package org.seasar.doma.jdbc;
 
+import java.sql.ResultSet;
+
 /**
  * {@link Config} の骨格実装です。
  * <p>
  * 多くの場合、アプリケーションの要件に応じた実装を作成し使用することを検討してください。
- * 
+ *
  * @author taedium
- * 
+ *
  */
 public abstract class DomaAbstractConfig implements Config {
 
     /**
      * {@link SqlFile} のリポジトリ
-     * 
+     *
      * @since 1.1.0
      */
     protected static SqlFileRepository defaultSqlFileRepository = new GreedyCacheSqlFileRepository();
 
     /**
      * DBCに関する処理を記録するロガー
-     * 
+     *
      * @since 1.1.0
      */
     protected static JdbcLogger defaultJdbcLogger = new UtilLoggingJdbcLogger();
 
     /**
      * {@literal REQUIRES_NEW} の属性をもつトランザクションを制御するコントローラ
-     * 
+     *
      * @since 1.1.0
      */
     protected static RequiresNewController defaultRequiresNewController = new NullRequiresNewController();
 
     /**
      * クラスのヘルパー
-     * 
+     *
      * @since 1.27.0
      */
     protected static ClassHelper defaultClassHelper = new DefaultClassHelper();
+
+    /**
+     * {@link ResultSet} のファクトリ
+     *
+     * @since 1.37.0
+     */
+    protected static ResultSetFactory defaultResultSetFactory = new DefaultResultSetFactory();
 
     /**
      * インスタンスを構築します。
@@ -82,6 +91,11 @@ public abstract class DomaAbstractConfig implements Config {
     @Override
     public ClassHelper getClassHelper() {
         return defaultClassHelper;
+    }
+
+    @Override
+    public ResultSetFactory getResultSetFactory() {
+        return defaultResultSetFactory;
     }
 
     @Override

@@ -28,15 +28,15 @@ import org.seasar.doma.message.Message;
 
 /**
  * {@link IdGenerator} の骨格実装です。
- * 
+ *
  * @author taedium
- * 
+ *
  */
 public abstract class AbstractIdGenerator implements IdGenerator {
 
     /**
      * 生成された識別子を取得するSQLを実行します。
-     * 
+     *
      * @param config
      *            識別子生成の設定
      * @param sql
@@ -54,7 +54,8 @@ public abstract class AbstractIdGenerator implements IdGenerator {
             try {
                 logger.logSql(getClass().getName(), "getGeneratedId", sql);
                 setupOptions(config, preparedStatement);
-                ResultSet resultSet = preparedStatement.executeQuery();
+                ResultSet resultSet = config.getResultSetFactory()
+                        .createResultSet(preparedStatement, sql);
                 return getGeneratedValue(config, resultSet);
             } catch (SQLException e) {
                 throw new JdbcException(Message.DOMA2018, e, config
@@ -69,7 +70,7 @@ public abstract class AbstractIdGenerator implements IdGenerator {
 
     /**
      * {@code preparedStatement} に対しオプションの設定を行います。
-     * 
+     *
      * @param config
      *            識別子生成の設定
      * @param preparedStatement
@@ -92,7 +93,7 @@ public abstract class AbstractIdGenerator implements IdGenerator {
 
     /**
      * {@link ResultSet} から生成された識別子の値を取得します。
-     * 
+     *
      * @param config
      *            識別子生成の設定
      * @param resultSet
