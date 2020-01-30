@@ -273,6 +273,7 @@ public class TypeDeclaration {
                 if (env.getElementUtils().hides(hider.getElement(),
                         hidden.getElement())) {
                     it.remove();
+                    break;
                 }
             }
         }
@@ -382,6 +383,7 @@ public class TypeDeclaration {
                 if (elements.overrides(overrider.getElement(),
                         overridden.getElement(), overriderTypeElement)) {
                     it.remove();
+                    break;
                 }
             }
         }
@@ -403,6 +405,7 @@ public class TypeDeclaration {
                     if (env.getElementUtils().hides(hider.getElement(),
                             hidden.getElement())) {
                         it.remove();
+                        break;
                     }
                 }
             }
