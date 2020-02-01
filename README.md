@@ -14,7 +14,7 @@ Notice
 Maintenance Policy
 ------------------
 
-We accepts only bug fixes for Doma 1. We are going to include new features in Doma 2.
+We accept only bug fixes for Doma 1. We are going to include new features in Doma 2.
 
 Build with Maven
 ----------------
