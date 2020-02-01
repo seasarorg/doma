@@ -25,7 +25,7 @@ To build with Maven, add the dependency listed below to your pom.xml file:
 <dependency>
   <groupId>org.seasar.doma</groupId>
   <artifactId>doma</artifactId>
-  <version>1.38.1</version>
+  <version>1.38.2</version>
 </dependency>
 ```
 
