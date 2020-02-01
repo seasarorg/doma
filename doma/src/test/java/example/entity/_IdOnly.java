@@ -1,12 +1,7 @@
 package example.entity;
 
 /** */
-@javax.annotation.Generated(value = { "Doma", "1.38.0" }, date = "2015-07-21T13:32:18.619+0900")
 public final class _IdOnly extends org.seasar.doma.jdbc.entity.AbstractEntityType<IdOnly> {
-
-    static {
-        org.seasar.doma.internal.Artifact.validateVersion("1.38.0");
-    }
 
     private static final _IdOnly __singleton = new _IdOnly();
 
