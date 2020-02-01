@@ -53,10 +53,10 @@ $ ./mvnw clean install
 Issues
 ------
 
-### version 1.38.1 and above
+### version 1.37.0 and above
 https://github.com/seasarorg/doma/issues
 
-### version 1.38.0 and below
+### version 1.36.0 and below
 https://www.seasar.org/issues/projects/DOMA/issues
 
 License
