@@ -43,33 +43,6 @@
 	</contributors>
 
 	<!-- Environment Settings -->
-	<issueManagement>
-		<system>JIRA</system>
-		<url><![CDATA[https://www.seasar.org/issues/browse/DOMA]]></url>
-	</issueManagement>
-	<mailingLists>
-		<mailingList>
-			<name>Seasar-user</name>
-			<subscribe>https://www.seasar.org/mailman/listinfo/seasar-user</subscribe>
-			<unsubscribe>https://www.seasar.org/mailman/listinfo/seasar-user</unsubscribe>
-			<post>seasar-user@ml.seasar.org</post>
-			<archive>https://www.seasar.org/mailman/listinfo/seasar-user</archive>
-		</mailingList>
-		<mailingList>
-			<name>Seasar-dev</name>
-			<subscribe>https://www.seasar.org/mailman/listinfo/seasar-dev</subscribe>
-			<unsubscribe>https://www.seasar.org/mailman/listinfo/seasar-dev</unsubscribe>
-			<post>seasar-dev@ml.seasar.org</post>
-			<archive>https://www.seasar.org/mailman/listinfo/seasar-dev</archive>
-		</mailingList>
-		<mailingList>
-			<name>Seasar-user-en</name>
-			<subscribe>https://www.seasar.org/mailman/listinfo/seasar-user-en</subscribe>
-			<unsubscribe>https://www.seasar.org/mailman/listinfo/seasar-user-en</unsubscribe>
-			<post>seasar-user-en@ml.seasar.org</post>
-			<archive>http://ml.seasar.org/archives/seasar-user-en/</archive>
-		</mailingList>
-	</mailingLists>
 	<scm>
 		<connection>scm:git:git@github.com:seasarorg/doma.git</connection>
 		<developerConnection>scm:git:git@github.com:seasarorg/doma.git</developerConnection>
@@ -97,10 +70,6 @@
 			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
 		</repository>
 	</distributionManagement>
-	<ciManagement>
-		<system>jenkins</system>
-		<url>https://www.seasar.org/ci/job/doma-it/</url>
-	</ciManagement>
 
 	<!-- Build Settings -->
 	<build>
@@ -126,14 +95,6 @@
 					<artifactId>maven-deploy-plugin</artifactId>
 					<configuration>
 						<updateReleaseInfo>true</updateReleaseInfo>
-					</configuration>
-				</plugin>
-				<plugin>
-					<artifactId>maven-site-plugin</artifactId>
-					<configuration>
-						<locales>ja</locales>
-						<inputEncoding>UTF-8</inputEncoding>
-						<outputEncoding>UTF-8</outputEncoding>
 					</configuration>
 				</plugin>
 			</plugins>
@@ -226,25 +187,6 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>ant-dist</id>
-						<phase>site</phase>
-						<configuration>
-							<tasks>
-								<ant antfile="build.xml" target="dist">
-									<property name="ver" value="${project.version}"/>
-								</ant>
-							</tasks>
-						</configuration>
-						<goals>
-							<goal>run</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
 				<groupId>com.google.code.maven-license-plugin</groupId>
 				<artifactId>maven-license-plugin</artifactId>
 				<version>1.4.0</version>
@@ -260,13 +202,6 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		<extensions>
-			<extension>
-				<groupId>org.apache.maven.wagon</groupId>
-				<artifactId>wagon-webdav</artifactId>
-				<version>1.0-beta-2</version>
-			</extension>
-		</extensions>
 	</build>
 
 	<!-- Dependency Settings -->
