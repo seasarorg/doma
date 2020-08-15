@@ -19,6 +19,16 @@ Maintenance Policy
 
 We accept only bug fixes for Doma 1. We are going to include new features in Doma 2.
 
+Documentation
+-------------
+
+http://doma.seasar.org/
+
+Google Group
+------------
+
+https://groups.google.com/g/doma-user
+
 Build with Maven
 ----------------
 
