@@ -57,6 +57,10 @@ In addition, if you use Doma 1.38.0 and below, add the repository listed below t
 Build Doma 1 from Source
 ------------------------
 
+Install JDK 8.
+
+Clone the repository and Run the maven command as follows:
+
 ```sh
 $ git clone https://github.com/seasarorg/doma.git
 $ cd doma/doma
