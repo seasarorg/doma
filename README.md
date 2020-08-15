@@ -5,6 +5,9 @@ Doma is a Database access framework for Java 6 and above.
 
 Doma uses [Annotation Processing Tool][apt] to generate source code and validate sql mappings at *compile time*.
 
+[![CI](https://github.com/seasarorg/doma/workflows/CI/badge.svg)](https://github.com/seasarorg/doma/actions?query=workflow%3ACI)
+[![Google group : doma-user](https://img.shields.io/badge/Google%20Group-doma--user-orange.svg)](https://groups.google.com/g/doma-user)
+
 Notice
 --------
 
@@ -15,6 +18,16 @@ Maintenance Policy
 ------------------
 
 We accept only bug fixes for Doma 1. We are going to include new features in Doma 2.
+
+Documentation
+-------------
+
+http://doma.seasar.org/
+
+Google Group
+------------
+
+https://groups.google.com/g/doma-user
 
 Build with Maven
 ----------------
@@ -43,6 +56,10 @@ In addition, if you use Doma 1.38.0 and below, add the repository listed below t
 
 Build Doma 1 from Source
 ------------------------
+
+Install JDK 8.
+
+Clone the repository and Run the maven command as follows:
 
 ```sh
 $ git clone https://github.com/seasarorg/doma.git
