@@ -5,6 +5,9 @@ Doma is a Database access framework for Java 6 and above.
 
 Doma uses [Annotation Processing Tool][apt] to generate source code and validate sql mappings at *compile time*.
 
+[![CI](https://github.com/seasarorg/doma/workflows/CI/badge.svg)](https://github.com/seasarorg/doma/actions?query=workflow%3ACI)
+[![Google group : doma-user](https://img.shields.io/badge/Google%20Group-doma--user-orange.svg)](https://groups.google.com/g/doma-user)
+
 Notice
 --------
 
