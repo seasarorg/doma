@@ -7,6 +7,7 @@ Doma uses [Annotation Processing Tool][apt] to generate source code and validate
 
 [![CI](https://github.com/seasarorg/doma/workflows/CI/badge.svg)](https://github.com/seasarorg/doma/actions?query=workflow%3ACI)
 [![Google group : doma-user](https://img.shields.io/badge/Google%20Group-doma--user-orange.svg)](https://groups.google.com/g/doma-user)
+[![project chat](https://img.shields.io/badge/zulip-join_chat-green.svg)](https://domaframework.zulipchat.com)
 
 Notice
 --------
@@ -28,6 +29,11 @@ Google Group
 ------------
 
 https://groups.google.com/g/doma-user
+
+Chatroom
+---------------------
+
+https://domaframework.zulipchat.com
 
 Build with Maven
 ----------------
